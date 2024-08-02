@@ -1,0 +1,105 @@
+#include <iostream>
+#include <cmath> // For sqrt and cbrt functions
+
+using namespace std;
+
+// Simple class with basic arithmetic operations
+class Simple {
+protected:
+    int num1, num2;
+    int sum, diff, prod;
+    float div;
+
+public:
+    void setInfo(int a, int b) {
+        num1 = a;
+        num2 = b;
+    }
+
+    void process() {
+        sum = num1 + num2;
+        diff = num1 - num2;
+        prod = num1 * num2;
+        if (num2 != 0) {
+            div = static_cast<float>(num1) / num2;
+        } else {
+            div = 0; // Handle division by zero case
+        }
+    }
+
+    void display() {
+        cout << num1 << " + " << num2 << " = " << sum << endl;
+        cout << num1 << " - " << num2 << " = " << diff << endl;
+        cout << num1 << " * " << num2 << " = " << prod << endl;
+        if (num2 != 0) {
+            cout << num1 << " / " << num2 << " = " << div << endl;
+        } else {
+            cout << "Division by zero is undefined." << endl;
+        }
+    }
+};
+
+// Scientific class with advanced mathematical operations
+class Scientific {
+protected:
+    int num3, num4;
+    float sqr3, sqr4;
+    float cub3, cub4;
+    float sqrt3, sqrt4;
+    float cbrt3, cbrt4;
+
+public:
+    void setInfo(int a, int b) {
+        num3 = a;
+        num4 = b;
+    }
+
+    void process() {
+        sqr3 = num3 * num3;
+        sqr4 = num4 * num4;
+        cub3 = num3 * num3 * num3;
+        cub4 = num4 * num4 * num4;
+        sqrt3 = sqrt(num3);
+        sqrt4 = sqrt(num4);
+        cbrt3 = cbrt(num3);
+        cbrt4 = cbrt(num4);
+    }
+
+    void display() {
+        cout << num3 << " squared = " << sqr3 << endl;
+        cout << num4 << " squared = " << sqr4 << endl;
+        cout << num3 << " cubed = " << cub3 << endl;
+        cout << num4 << " cubed = " << cub4 << endl;
+        cout << "Square root of " << num3 << " = " << sqrt3 << endl;
+        cout << "Square root of " << num4 << " = " << sqrt4 << endl;
+        cout << "Cube root of " << num3 << " = " << cbrt3 << endl;
+        cout << "Cube root of " << num4 << " = " << cbrt4 << endl;
+    }
+};
+
+// Hybrid class combining Simple and Scientific functionalities
+class Hybrid : public Simple, public Scientific {
+public:
+    void setInfo(int a, int b) {
+        Simple::setInfo(a, b);
+        Scientific::setInfo(a, b);
+    }
+
+    void process() {
+        Simple::process();
+        Scientific::process();
+    }
+
+    void display() {
+        Simple::display();
+        Scientific::display();
+    }
+};
+
+int main() {
+    Hybrid h;
+    h.setInfo(15,20 );
+    h.process();
+    h.display();
+    return 0;
+}
