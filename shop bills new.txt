@@ -1,0 +1,67 @@
+#include <iostream>
+    #include <string>
+    using namespace std;
+    
+    class List {
+    public:
+        int id;
+        string name;
+        int price;
+    };
+    
+    // Bill display function
+    void display(List l[], int size, string cName, string cAddress)
+{
+       int total = 0;
+
+//"\t is used for tab spaces
+//"n" is used for new line   
+        cout << "\t shery stores \n";
+        cout << "\n";
+        cout << "Name : " << cName << " \t Address : " << cAddress << "\n";
+        cout << "\n";
+        cout << "Id\tItem Name\tPrice\n";
+    
+        for (int i = 0; i < size; i++) {
+            cout << l[i].id << "\t" << l[i].name << "\t\t" << l[i].price << "\n";
+            total += l[i].price; 
+        }
+        cout << "\tTotal : " << total << endl;
+        cout << "\n\n";
+        cout << "\t Thanks for visiting \n";
+        cout << "\n\n";
+    }
+    
+    int main() {
+        cout << "Hello..." << endl;
+        string Name;
+        string Address;
+        int totalItems;
+    
+        cout << "Enter your name: ";
+        getline(cin, Name);
+        cout << "Enter your address: ";
+        getline(cin, Address);
+        cout << "Enter total items: ";
+        cin >> totalItems;
+        cin.ignore(); // To clear the newline character from the input buffer
+    
+        // Create object array
+        List l[totalItems];
+    
+        // Insert items
+        for (int i = 0; i < totalItems; i++) {
+            l[i].id = (i + 1);
+            cout << "Enter " << (i + 1) << " item name: ";
+            getline(cin, l[i].name);
+            cout << "Enter price: ";
+            cin >> l[i].price;
+            cin.ignore(); // To clear the newline character from the input buffer
+        }
+    
+        // Call display function
+        display(l, totalItems, Name, Address);
+    
+        return 0;
+    }
+    
